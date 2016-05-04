@@ -10,11 +10,13 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "./TrayIcon.hpp"
+#include "./GameWindowPositionWatcher.hpp"
 #include <cassert>
 
 //==============================================================================
 class FEZUtilApplication
     : public JUCEApplication
+    , public Timer
 {
 public:
     //==============================================================================
@@ -31,12 +33,14 @@ public:
         commandManager_->registerAllCommandsForTarget(this);
 
         trayIcon_ = new TrayIcon(commandManager_);
+        startTimerHz(1);
     }
 
     void shutdown() override
     {
         trayIcon_ = nullptr;
         commandManager_ = nullptr;
+        stopTimer();
     }
 
     //==============================================================================
@@ -54,9 +58,20 @@ public:
         // the other instance's command-line arguments were.
     }
 
+    void timerCallback() override
+    {
+        bool const shouldReplace = watcher_ != nullptr && !watcher_->isWorking();
+
+        if (watcher_ == nullptr || shouldReplace) {
+            watcher_ = nullptr;
+            watcher_ = new GameWindowPositionWatcher();
+        }
+    }
+
 private:
     ScopedPointer<TrayIcon> trayIcon_;
     ScopedPointer<ApplicationCommandManager> commandManager_;
+    ScopedPointer<GameWindowPositionWatcher> watcher_;
 };
 
 //==============================================================================

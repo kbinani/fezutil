@@ -8,13 +8,17 @@
       <FILE id="lWe8HF" name="tray_icon.png" compile="0" resource="1" file="Resources/tray_icon.png"/>
     </GROUP>
     <GROUP id="{61F237AD-7207-E200-5358-AB987EE8AB2E}" name="Source">
+      <FILE id="r16El3" name="GameWindowPositionWatcher.cpp" compile="1"
+            resource="0" file="Source/GameWindowPositionWatcher.cpp"/>
+      <FILE id="MNuVMk" name="GameWindowPositionWatcher.hpp" compile="0"
+            resource="0" file="Source/GameWindowPositionWatcher.hpp"/>
       <FILE id="fnhKR7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="dwJQ3P" name="TrayIcon.cpp" compile="1" resource="0" file="Source/TrayIcon.cpp"/>
       <FILE id="Sjon82" name="TrayIcon.hpp" compile="0" resource="0" file="Source/TrayIcon.hpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <VS2015 targetFolder="Builds/VisualStudio2015">
+    <VS2015 targetFolder="Builds/VisualStudio2015" extraLinkerFlags="/MANIFESTUAC:&quot;level='requireAdministrator' uiAccess='false'&quot;">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="fezutil"/>
