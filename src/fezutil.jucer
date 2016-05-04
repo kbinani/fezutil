@@ -4,8 +4,13 @@
               bundleIdentifier="com.yourcompany.fezutil" includeBinaryInAppConfig="1"
               jucerVersion="4.2.1">
   <MAINGROUP id="KjRM7b" name="fezutil">
+    <GROUP id="{1ED2BE1E-C1D5-A955-B0CF-9B795AEB204D}" name="Resources">
+      <FILE id="lWe8HF" name="tray_icon.png" compile="0" resource="1" file="Resources/tray_icon.png"/>
+    </GROUP>
     <GROUP id="{61F237AD-7207-E200-5358-AB987EE8AB2E}" name="Source">
       <FILE id="fnhKR7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="dwJQ3P" name="TrayIcon.cpp" compile="1" resource="0" file="Source/TrayIcon.cpp"/>
+      <FILE id="Sjon82" name="TrayIcon.hpp" compile="0" resource="0" file="Source/TrayIcon.hpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

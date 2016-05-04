@@ -9,14 +9,16 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-
+#include "./TrayIcon.hpp"
+#include <cassert>
 
 //==============================================================================
-class fezutilApplication  : public JUCEApplication
+class FEZUtilApplication
+    : public JUCEApplication
 {
 public:
     //==============================================================================
-    fezutilApplication() {}
+    FEZUtilApplication() {}
 
     const String getApplicationName() override       { return ProjectInfo::projectName; }
     const String getApplicationVersion() override    { return ProjectInfo::versionString; }
@@ -25,12 +27,16 @@ public:
     //==============================================================================
     void initialise (const String& commandLine) override
     {
-        // Add your application's initialisation code here..
+        commandManager_ = new ApplicationCommandManager();
+        commandManager_->registerAllCommandsForTarget(this);
+
+        trayIcon_ = new TrayIcon(commandManager_);
     }
 
     void shutdown() override
     {
-        // Add your application's shutdown code here..
+        trayIcon_ = nullptr;
+        commandManager_ = nullptr;
     }
 
     //==============================================================================
@@ -47,8 +53,12 @@ public:
         // this method is invoked, and the commandLine parameter tells you what
         // the other instance's command-line arguments were.
     }
+
+private:
+    ScopedPointer<TrayIcon> trayIcon_;
+    ScopedPointer<ApplicationCommandManager> commandManager_;
 };
 
 //==============================================================================
 // This macro generates the main() routine that launches the app.
-START_JUCE_APPLICATION (fezutilApplication)
+START_JUCE_APPLICATION(FEZUtilApplication)
