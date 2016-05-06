@@ -22,6 +22,12 @@
       <FILE id="MNuVMk" name="GameWindowPositionWatcher.hpp" compile="0"
             resource="0" file="Source/GameWindowPositionWatcher.hpp"/>
       <FILE id="fnhKR7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="Dn4nVF" name="ReplaySaveFolderWatcher.cpp" compile="1" resource="0"
+            file="Source/ReplaySaveFolderWatcher.cpp"/>
+      <FILE id="iz6oXt" name="ReplaySaveFolderWatcher.hpp" compile="0" resource="0"
+            file="Source/ReplaySaveFolderWatcher.hpp"/>
+      <FILE id="S5ueN9" name="ScopedHandle.hpp" compile="0" resource="0"
+            file="Source/ScopedHandle.hpp"/>
       <FILE id="dwJQ3P" name="TrayIcon.cpp" compile="1" resource="0" file="Source/TrayIcon.cpp"/>
       <FILE id="Sjon82" name="TrayIcon.hpp" compile="0" resource="0" file="Source/TrayIcon.hpp"/>
     </GROUP>
