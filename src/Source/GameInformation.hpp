@@ -1,7 +1,7 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 
-class FEZGameInformation
+class GameInformation
 {
 public:
     Rectangle<int> lookupGameWindowBounds() const;

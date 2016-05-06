@@ -3,15 +3,16 @@
 
 class TrayIcon;
 class GameWindowPositionWatcher;
+class ReplaySaveFolderWatcher;
 
-class FEZUtilApplication
+class Application
     : public JUCEApplication
     , public Timer
 {
 public:
-    FEZUtilApplication();
+    Application();
 
-    ~FEZUtilApplication();
+    ~Application();
 
     bool isMonitoringGameWindow() const
     {
@@ -58,6 +59,6 @@ private:
 private:
     ScopedPointer<TrayIcon> trayIcon_;
     ScopedPointer<ApplicationCommandManager> commandManager_;
-    ScopedPointer<GameWindowPositionWatcher> watcher_;
+    ScopedPointer<GameWindowPositionWatcher> gameWindowPositionWatcher_;
     bool monitoringGameWindowPosition_;
 };

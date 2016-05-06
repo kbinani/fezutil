@@ -1,12 +1,12 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 
-class FEZUtilApplication;
+class Application;
 
 class TrayIcon : public SystemTrayIconComponent
 {
 public:
-    TrayIcon(FEZUtilApplication* app, ApplicationCommandManager* commandManager);
+    TrayIcon(Application* app, ApplicationCommandManager* commandManager);
 
     ~TrayIcon();
 
@@ -15,5 +15,5 @@ private:
 
 private:
     ApplicationCommandManager* const commandManager_;
-    FEZUtilApplication* const app_;
+    Application* const app_;
 };

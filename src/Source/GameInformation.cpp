@@ -1,4 +1,4 @@
-#include "./FEZGameInformation.hpp"
+#include "./GameInformation.hpp"
 #include "./ScopedHandle.hpp"
 
 #define NOMINMAX
@@ -14,7 +14,7 @@ namespace
     }
 }
 
-juce::Rectangle<int> FEZGameInformation::lookupGameWindowBounds() const
+juce::Rectangle<int> GameInformation::lookupGameWindowBounds() const
 {
     juce::Rectangle<int> bounds;
     HWND handle = findGameWindow();
@@ -35,7 +35,7 @@ juce::Rectangle<int> FEZGameInformation::lookupGameWindowBounds() const
 }
 
 
-void FEZGameInformation::updateGameWindowBounds(juce::Rectangle<int> const& bounds) const
+void GameInformation::updateGameWindowBounds(juce::Rectangle<int> const& bounds) const
 {
     HWND handle = findGameWindow();
     if (handle == NULL) {
@@ -49,7 +49,7 @@ void FEZGameInformation::updateGameWindowBounds(juce::Rectangle<int> const& boun
 }
 
 
-File FEZGameInformation::lookupReplaySaveFolder() const
+File GameInformation::lookupReplaySaveFolder() const
 {
     HWND handle = findGameWindow();
     if (handle == NULL) {

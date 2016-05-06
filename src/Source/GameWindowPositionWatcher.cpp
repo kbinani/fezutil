@@ -1,5 +1,5 @@
 #include "./GameWindowPositionWatcher.hpp"
-#include "./FEZGameInformation.hpp"
+#include "./GameInformation.hpp"
 #include <thread>
 #include <atomic>
 
@@ -54,7 +54,7 @@ private:
     std::thread thread_;
     std::atomic_bool abortRequested_;
     std::atomic_bool isWorking_;
-    FEZGameInformation info_;
+    GameInformation info_;
 };
 
 

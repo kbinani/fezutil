@@ -8,15 +8,13 @@
       <FILE id="lWe8HF" name="tray_icon.png" compile="0" resource="1" file="Resources/tray_icon.png"/>
     </GROUP>
     <GROUP id="{61F237AD-7207-E200-5358-AB987EE8AB2E}" name="Source">
+      <FILE id="FcNhA2" name="Application.cpp" compile="1" resource="0" file="Source/Application.cpp"/>
+      <FILE id="MrRUUN" name="Application.hpp" compile="0" resource="0" file="Source/Application.hpp"/>
       <FILE id="vBhjjx" name="CommandIDs.hpp" compile="0" resource="0" file="Source/CommandIDs.hpp"/>
-      <FILE id="A24gZq" name="FEZGameInformation.cpp" compile="1" resource="0"
-            file="Source/FEZGameInformation.cpp"/>
-      <FILE id="eqpUyw" name="FEZGameInformation.hpp" compile="0" resource="0"
-            file="Source/FEZGameInformation.hpp"/>
-      <FILE id="MuiOWk" name="FEZUtilApplication.cpp" compile="1" resource="0"
-            file="Source/FEZUtilApplication.cpp"/>
-      <FILE id="EZUvbm" name="FEZUtilApplication.hpp" compile="0" resource="0"
-            file="Source/FEZUtilApplication.hpp"/>
+      <FILE id="UaOHk4" name="GameInformation.cpp" compile="1" resource="0"
+            file="Source/GameInformation.cpp"/>
+      <FILE id="OEXSRi" name="GameInformation.hpp" compile="0" resource="0"
+            file="Source/GameInformation.hpp"/>
       <FILE id="r16El3" name="GameWindowPositionWatcher.cpp" compile="1"
             resource="0" file="Source/GameWindowPositionWatcher.cpp"/>
       <FILE id="MNuVMk" name="GameWindowPositionWatcher.hpp" compile="0"

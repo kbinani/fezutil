@@ -1,20 +1,21 @@
-#include "./FEZUtilApplication.hpp"
+#include "./Application.hpp"
 #include "./TrayIcon.hpp"
 #include "./CommandIDs.hpp"
 #include "./GameWindowPositionWatcher.hpp"
+#include "./ReplaySaveFolderWatcher.hpp"
 
-FEZUtilApplication::FEZUtilApplication()
+Application::Application()
     : monitoringGameWindowPosition_(true)
 {
 }
 
 
-FEZUtilApplication::~FEZUtilApplication()
+Application::~Application()
 {
 }
 
 
-void FEZUtilApplication::initialise(String const& commandLine)
+void Application::initialise(String const& commandLine)
 {
     commandManager_ = new ApplicationCommandManager();
     commandManager_->registerAllCommandsForTarget(this);
@@ -24,7 +25,7 @@ void FEZUtilApplication::initialise(String const& commandLine)
 }
 
 
-void FEZUtilApplication::shutdown()
+void Application::shutdown()
 {
     trayIcon_ = nullptr;
     commandManager_ = nullptr;
@@ -32,22 +33,22 @@ void FEZUtilApplication::shutdown()
 }
 
 
-void FEZUtilApplication::timerCallback()
+void Application::timerCallback()
 {
     if (monitoringGameWindowPosition_) {
-        bool const shouldReplace = watcher_ != nullptr && !watcher_->isWorking();
+        bool const shouldReplace = gameWindowPositionWatcher_ != nullptr && !gameWindowPositionWatcher_->isWorking();
 
-        if (watcher_ == nullptr || shouldReplace) {
-            watcher_ = nullptr;
-            watcher_ = new GameWindowPositionWatcher();
+        if (gameWindowPositionWatcher_ == nullptr || shouldReplace) {
+            gameWindowPositionWatcher_ = nullptr;
+            gameWindowPositionWatcher_ = new GameWindowPositionWatcher();
         }
     } else {
-        watcher_ = nullptr;
+        gameWindowPositionWatcher_ = nullptr;
     }
 }
 
 
-void FEZUtilApplication::getAllCommands(Array<CommandID>& commands)
+void Application::getAllCommands(Array<CommandID>& commands)
 {
     JUCEApplication::getAllCommands(commands);
 
@@ -60,7 +61,7 @@ void FEZUtilApplication::getAllCommands(Array<CommandID>& commands)
 }
 
 
-void FEZUtilApplication::getCommandInfo(CommandID commandID, ApplicationCommandInfo& result)
+void Application::getCommandInfo(CommandID commandID, ApplicationCommandInfo& result)
 {
     switch (commandID) {
         case CommandIDs::DisableGameWindowPositionWatcher:
@@ -84,7 +85,7 @@ void FEZUtilApplication::getCommandInfo(CommandID commandID, ApplicationCommandI
 }
 
 
-bool FEZUtilApplication::perform(InvocationInfo const& info)
+bool Application::perform(InvocationInfo const& info)
 {
     switch (info.commandID) {
         case CommandIDs::DisableGameWindowPositionWatcher:

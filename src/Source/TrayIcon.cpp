@@ -1,8 +1,8 @@
 #include "./TrayIcon.hpp"
-#include "./FEZUtilApplication.hpp"
+#include "./Application.hpp"
 #include "./CommandIDs.hpp"
 
-TrayIcon::TrayIcon(FEZUtilApplication* app, ApplicationCommandManager* commandManager)
+TrayIcon::TrayIcon(Application* app, ApplicationCommandManager* commandManager)
     : commandManager_(commandManager)
     , app_(app)
 {

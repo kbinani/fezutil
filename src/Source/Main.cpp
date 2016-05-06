@@ -1,3 +1,3 @@
-#include "./FEZUtilApplication.hpp"
+#include "./Application.hpp"
 
-START_JUCE_APPLICATION(FEZUtilApplication)
+START_JUCE_APPLICATION(Application)

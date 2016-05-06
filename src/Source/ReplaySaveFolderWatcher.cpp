@@ -1,5 +1,5 @@
 #include "./ReplaySaveFolderWatcher.hpp"
-#include "./FEZGameInformation.hpp"
+#include "./GameInformation.hpp"
 #include <thread>
 #include <atomic>
 
@@ -66,7 +66,7 @@ private:
     std::thread worker_;
     std::atomic_bool abortRequested_;
     std::atomic_bool working_;
-    FEZGameInformation info_;
+    GameInformation info_;
 };
 
 
