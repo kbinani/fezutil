@@ -9,6 +9,10 @@
     </GROUP>
     <GROUP id="{61F237AD-7207-E200-5358-AB987EE8AB2E}" name="Source">
       <FILE id="vBhjjx" name="CommandIDs.hpp" compile="0" resource="0" file="Source/CommandIDs.hpp"/>
+      <FILE id="A24gZq" name="FEZGameInformation.cpp" compile="1" resource="0"
+            file="Source/FEZGameInformation.cpp"/>
+      <FILE id="eqpUyw" name="FEZGameInformation.hpp" compile="0" resource="0"
+            file="Source/FEZGameInformation.hpp"/>
       <FILE id="MuiOWk" name="FEZUtilApplication.cpp" compile="1" resource="0"
             file="Source/FEZUtilApplication.cpp"/>
       <FILE id="EZUvbm" name="FEZUtilApplication.hpp" compile="0" resource="0"

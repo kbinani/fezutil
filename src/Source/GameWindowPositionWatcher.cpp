@@ -1,9 +1,7 @@
 #include "./GameWindowPositionWatcher.hpp"
+#include "./FEZGameInformation.hpp"
 #include <thread>
 #include <atomic>
-#define NOMINMAX
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
 
 class GameWindowPositionWatcher::Impl
 {
@@ -13,51 +11,30 @@ public:
         abortRequested_ = false;
         isWorking_ = true;
 
-        HWND fezWindow = FindWindowW(L"MainWindow", L"Fantasy Earth Zero");
-        if (!fezWindow) {
+        Rectangle<int> initialBounds = info_.lookupGameWindowBounds();
+
+        if (!initialBounds.isEmpty()) {
             isWorking_ = false;
             return;
         }
 
-        thread_ = std::thread([this](HWND fezWindow) {
-            auto const getWindowBounds = [](HWND handle) {
-                RECT bounds;
-                bounds.top = 0;
-                bounds.left = 0;
-                bounds.bottom = 0;
-                bounds.right = 0;
-                if (!GetWindowRect(handle, &bounds)) {
-                    return bounds;
-                }
-                return bounds;
-            };
-
-            RECT const initialBounds = getWindowBounds(fezWindow);
-
-            if (IsRectEmpty(&initialBounds)) {
-                isWorking_ = false;
-                return;
-            }
-
+        thread_ = std::thread([this](Rectangle<int> initialBounds) {
             while (!this->abortRequested_) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
-                RECT const bounds = getWindowBounds(fezWindow);
+                auto const bounds = info_.lookupGameWindowBounds();
 
-                if (IsRectEmpty(&bounds)) {
+                if (bounds.isEmpty()) {
                     break;
                 }
 
-                if (bounds.top != initialBounds.top || bounds.left != initialBounds.left) {
-                    MoveWindow(fezWindow,
-                               initialBounds.left, initialBounds.top,
-                               bounds.right - bounds.left, bounds.bottom - bounds.top,
-                               FALSE); // bRepaint
+                if (bounds != initialBounds) {
+                    info_.updateGameWindowBounds(initialBounds);
                 }
             }
 
             isWorking_ = false;
-        }, fezWindow);
+        }, initialBounds);
     }
 
     ~Impl()
@@ -77,6 +54,7 @@ private:
     std::thread thread_;
     std::atomic_bool abortRequested_;
     std::atomic_bool isWorking_;
+    FEZGameInformation info_;
 };
 
 
