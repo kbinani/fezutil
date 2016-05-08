@@ -33,23 +33,23 @@ void TrayIcon::mouseUp(MouseEvent const& e)
     menu.addSeparator();
 
     menu.addItem(ToggleGameWindowPositionWatcher,
-                 TRANS("Fix the game window position"),
+                 TRANS(L"ゲームウィンドウの位置を固定"),
                  true, // isEnabled
                  config->getBoolValue(Configuration::kFixGameWindowPosition)); // isTicked
     menu.addItem(ToggleBackupReplayFiles,
-                 TRANS("Backup replay files"),
+                 TRANS(L"戦場リプレイファイルをバックアップ"),
                  true, // isEnabled
                  config->getBoolValue(Configuration::kBackupReplayFiles));
 
     menu.addSeparator();
 
     menu.addItem(Settings,
-                 TRANS("Settings"),
+                 TRANS(L"設定"),
                  true, // isEnabled
                  false); // isTicked
 
     menu.addSeparator();
-    menu.addCommandItem(commandManager_, StandardApplicationCommandIDs::quit);
+    menu.addCommandItem(commandManager_, StandardApplicationCommandIDs::quit, TRANS(L"終了"));
 
     PopupMenu::Options options;
     int const selectedItemId = menu.showMenu(options);
@@ -68,6 +68,7 @@ void TrayIcon::mouseUp(MouseEvent const& e)
         DialogWindow::LaunchOptions opt;
         opt.content.setNonOwned(comp);
         opt.resizable = false;
+        opt.dialogTitle = TRANS(L"設定");
         opt.runModal();
     }
 }

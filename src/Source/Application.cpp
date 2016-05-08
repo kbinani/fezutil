@@ -4,6 +4,7 @@
 #include "./GameWindowPositionWatcher.hpp"
 #include "./ReplaySaveFolderWatcher.hpp"
 #include "./ConfigurationDialogComponent.hpp"
+#include "./LookAndFeel.hpp"
 
 Application::Application()
 {
@@ -26,6 +27,9 @@ void Application::initialise(String const& commandLine)
 
     props_.setStorageParameters(opt);
     config_ = props_.getUserSettings();
+
+    laf_ = new ::LookAndFeel();
+    juce::LookAndFeel::setDefaultLookAndFeel(laf_);
 
     commandManager_ = new ApplicationCommandManager();
     commandManager_->registerAllCommandsForTarget(this);

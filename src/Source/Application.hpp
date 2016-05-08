@@ -5,6 +5,7 @@
 class TrayIcon;
 class GameWindowPositionWatcher;
 class ReplaySaveFolderWatcher;
+class LookAndFeel;
 
 class Application
     : public JUCEApplication
@@ -67,6 +68,7 @@ private:
     ScopedPointer<ApplicationCommandManager> commandManager_;
     ScopedPointer<GameWindowPositionWatcher> gameWindowPositionWatcher_;
     ScopedPointer<ReplaySaveFolderWatcher> replaySaveFolderWatcher_;
+    ScopedPointer<::LookAndFeel> laf_;
     ApplicationProperties props_;
     PropertiesFile* config_;
 };

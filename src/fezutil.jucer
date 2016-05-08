@@ -27,6 +27,8 @@
             resource="0" file="Source/GameWindowPositionWatcher.cpp"/>
       <FILE id="MNuVMk" name="GameWindowPositionWatcher.hpp" compile="0"
             resource="0" file="Source/GameWindowPositionWatcher.hpp"/>
+      <FILE id="X09JbH" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/LookAndFeel.cpp"/>
+      <FILE id="ad5C59" name="LookAndFeel.hpp" compile="0" resource="0" file="Source/LookAndFeel.hpp"/>
       <FILE id="fnhKR7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="Dn4nVF" name="ReplaySaveFolderWatcher.cpp" compile="1" resource="0"
             file="Source/ReplaySaveFolderWatcher.cpp"/>

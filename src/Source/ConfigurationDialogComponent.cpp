@@ -22,8 +22,8 @@ ConfigurationDialogComponent::ConfigurationDialogComponent(PropertiesFile* confi
                             buttonWidth,
                             buttonHeight);
 
-        buttonCancel_.setButtonText(TRANS("Cancel"));
-        buttonOk_.setButtonText(TRANS("OK"));
+        buttonCancel_.setButtonText(TRANS(L"キャンセル"));
+        buttonOk_.setButtonText(TRANS(L"OK"));
         buttonCancel_.addShortcut(KeyPress(KeyPress::escapeKey));
         buttonOk_.addShortcut(KeyPress(KeyPress::returnKey));
         buttonCancel_.addListener(this);
@@ -32,21 +32,21 @@ ConfigurationDialogComponent::ConfigurationDialogComponent(PropertiesFile* confi
         addAndMakeVisible(buttonOk_);
     }
 
-    auto* groupWindowPosition = new GroupComponent(String::empty, TRANS("Game window position"));
+    auto* groupWindowPosition = new GroupComponent(String::empty, TRANS(L"ゲームウィンドウの位置"));
     {
         groupWindowPosition->setBounds(hMargin, vMargin, width - 2 * hMargin, 70);
 
         checkboxWatchGameWindowPosition_ = new ToggleButton();
         checkboxWatchGameWindowPosition_->setToggleState(config_->getBoolValue(Configuration::kFixGameWindowPosition), dontSendNotification);
         checkboxWatchGameWindowPosition_->setBounds(hMargin, 25, groupWindowPosition->getWidth() - 2 * hMargin, 20);
-        checkboxWatchGameWindowPosition_->setButtonText(TRANS("Fix the game window position"));
+        checkboxWatchGameWindowPosition_->setButtonText(TRANS(L"ゲームウィンドウの位置を固定"));
         groupWindowPosition->addAndMakeVisible(checkboxWatchGameWindowPosition_);
 
         components_.add(groupWindowPosition);
         addAndMakeVisible(groupWindowPosition);
     }
 
-    auto* groupReplayFilesBackup = new GroupComponent(String::empty, TRANS("Replay files backup"));
+    auto* groupReplayFilesBackup = new GroupComponent(String::empty, TRANS(L"戦場リプレイファイルのバックアップ"));
     {
         groupReplayFilesBackup->setBounds(hMargin,
                                           groupWindowPosition->getBottom() + vMargin,
@@ -56,11 +56,11 @@ ConfigurationDialogComponent::ConfigurationDialogComponent(PropertiesFile* confi
         checkboxBackupReplayFiles_ = new ToggleButton();
         checkboxBackupReplayFiles_->setToggleState(config_->getBoolValue(Configuration::kBackupReplayFiles), dontSendNotification);
         checkboxBackupReplayFiles_->setBounds(hMargin, 25, groupReplayFilesBackup->getWidth() - 2 * hMargin, 20);
-        checkboxBackupReplayFiles_->setButtonText(TRANS("Backup replay files"));
+        checkboxBackupReplayFiles_->setButtonText(TRANS(L"バックアップする"));
         groupReplayFilesBackup->addAndMakeVisible(checkboxBackupReplayFiles_);
 
         auto* labelReplayFileBackupDestinationFolder = new Label();
-        labelReplayFileBackupDestinationFolder->setText(TRANS("Backup destination") + String(":"), dontSendNotification);
+        labelReplayFileBackupDestinationFolder->setText(TRANS(L"バックアップ保存先") + String(":"), dontSendNotification);
         labelReplayFileBackupDestinationFolder->setBounds(hMargin,
                                                           checkboxBackupReplayFiles_->getBottom() + vMargin,
                                                           groupReplayFilesBackup->getWidth() - 2 * hMargin,
@@ -85,6 +85,7 @@ ConfigurationDialogComponent::ConfigurationDialogComponent(PropertiesFile* confi
                                                              groupReplayFilesBackup->getWidth() - 3 * hMargin - buttonReplayFileBackupDestinationFolder_->getWidth(),
                                                              30);
         textboxReplayFileBackupDestinationFolder_->setEditable(true);
+        textboxReplayFileBackupDestinationFolder_->setColour(Label::ColourIds::backgroundColourId, Colours::lightgrey);
         groupReplayFilesBackup->addAndMakeVisible(textboxReplayFileBackupDestinationFolder_);
 
         components_.add(groupReplayFilesBackup);
@@ -113,7 +114,7 @@ void ConfigurationDialogComponent::buttonClicked(Button* button)
             dialog->exitModalState(1);
         }
     } else if (button == buttonReplayFileBackupDestinationFolder_) {
-        FileChooser fc(TRANS("Select backup destination folder"));
+        FileChooser fc(TRANS(L"バックアップの保存先フォルダを選ぶ"));
         if (fc.browseForDirectory()) {
             textboxReplayFileBackupDestinationFolder_->setText(fc.getResult().getFullPathName(), dontSendNotification);
         }
