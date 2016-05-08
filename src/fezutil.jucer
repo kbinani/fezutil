@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="pwuo0j" name="fezutil" projectType="guiapp" version="1.0.0"
+<JUCERPROJECT id="pwuo0j" name="fezutil" projectType="guiapp" version="0.1.0"
               bundleIdentifier="com.yourcompany.fezutil" includeBinaryInAppConfig="1"
               jucerVersion="4.2.1">
   <MAINGROUP id="KjRM7b" name="fezutil">
