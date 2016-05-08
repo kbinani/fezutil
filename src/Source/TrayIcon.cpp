@@ -1,6 +1,7 @@
 #include "./TrayIcon.hpp"
 #include "./Application.hpp"
 #include "./CommandIDs.hpp"
+#include "./ConfigurationDialogComponent.hpp"
 
 TrayIcon::TrayIcon(Application* app, ApplicationCommandManager* commandManager)
     : commandManager_(commandManager)
@@ -22,16 +23,30 @@ void TrayIcon::mouseUp(MouseEvent const& e)
     enum Command
     {
         ToggleGameWindowPositionWatcher = 1,
+        ToggleBackupReplayFiles,
+        Settings,
     };
+
+    PropertiesFile const* config = app_->getConfiguration();
 
     menu.addSectionHeader(ProjectInfo::projectName);
     menu.addSeparator();
 
-    bool const ticked = app_->isMonitoringGameWindow();
     menu.addItem(ToggleGameWindowPositionWatcher,
-                 TRANS("Monitor Game Window"),
+                 TRANS("Fix the game window position"),
                  true, // isEnabled
-                 ticked); // isTicked
+                 config->getBoolValue(Configuration::kFixGameWindowPosition)); // isTicked
+    menu.addItem(ToggleBackupReplayFiles,
+                 TRANS("Backup replay files"),
+                 true, // isEnabled
+                 config->getBoolValue(Configuration::kBackupReplayFiles));
+
+    menu.addSeparator();
+
+    menu.addItem(Settings,
+                 TRANS("Settings"),
+                 true, // isEnabled
+                 false); // isTicked
 
     menu.addSeparator();
     menu.addCommandItem(commandManager_, StandardApplicationCommandIDs::quit);
@@ -42,7 +57,17 @@ void TrayIcon::mouseUp(MouseEvent const& e)
     if (selectedItemId == StandardApplicationCommandIDs::quit) {
         commandManager_->invoke(StandardApplicationCommandIDs::quit, false);
     } else if (selectedItemId == ToggleGameWindowPositionWatcher) {
-        CommandID command = ticked ? CommandIDs::DisableGameWindowPositionWatcher : CommandIDs::EnableGameWindowPositionWatcher;
+        CommandID command = config->getBoolValue(Configuration::kFixGameWindowPosition) ? CommandIDs::DisableGameWindowPositionWatcher : CommandIDs::EnableGameWindowPositionWatcher;
         commandManager_->invoke(command, false);
+    } else if (selectedItemId == ToggleBackupReplayFiles) {
+        CommandID command = config->getBoolValue(Configuration::kBackupReplayFiles) ? CommandIDs::DisableReplayFileBackup : CommandIDs::EnableReplayFileBackup;
+        commandManager_->invoke(command, false);
+    } else if (selectedItemId == Settings) {
+        ScopedPointer<ConfigurationDialogComponent> comp = new ConfigurationDialogComponent(app_->getMutableConfiguration());
+
+        DialogWindow::LaunchOptions opt;
+        opt.content.setNonOwned(comp);
+        opt.resizable = false;
+        opt.runModal();
     }
 }

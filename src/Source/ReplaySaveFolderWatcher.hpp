@@ -10,6 +10,8 @@ public:
 
     bool isWorking();
 
+    File const& getBackupDestinationFolder() const;
+
 private:
     class Impl;
     std::unique_ptr<Impl> impl_;

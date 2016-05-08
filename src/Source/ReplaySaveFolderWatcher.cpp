@@ -61,6 +61,11 @@ public:
         return working_;
     }
 
+    File const& getBackupDestinationFolder() const
+    {
+        return backupDestinationFolder_;
+    }
+
 private:
     File const backupDestinationFolder_;
     std::thread worker_;
@@ -84,4 +89,10 @@ ReplaySaveFolderWatcher::~ReplaySaveFolderWatcher()
 bool ReplaySaveFolderWatcher::isWorking()
 {
     return impl_->isWorking();
+}
+
+
+File const& ReplaySaveFolderWatcher::getBackupDestinationFolder() const
+{
+    return impl_->getBackupDestinationFolder();
 }

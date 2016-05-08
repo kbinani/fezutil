@@ -1,5 +1,6 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "./Configuration.hpp"
 
 class TrayIcon;
 class GameWindowPositionWatcher;
@@ -14,9 +15,14 @@ public:
 
     ~Application();
 
-    bool isMonitoringGameWindow() const
+    PropertiesFile const* getConfiguration() const
     {
-        return monitoringGameWindowPosition_;
+        return config_;
+    }
+
+    PropertiesFile* getMutableConfiguration()
+    {
+        return config_;
     }
 
 private:
@@ -60,5 +66,7 @@ private:
     ScopedPointer<TrayIcon> trayIcon_;
     ScopedPointer<ApplicationCommandManager> commandManager_;
     ScopedPointer<GameWindowPositionWatcher> gameWindowPositionWatcher_;
-    bool monitoringGameWindowPosition_;
+    ScopedPointer<ReplaySaveFolderWatcher> replaySaveFolderWatcher_;
+    ApplicationProperties props_;
+    PropertiesFile* config_;
 };

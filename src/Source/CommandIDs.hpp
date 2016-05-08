@@ -5,4 +5,7 @@ enum CommandIDs
 {
     EnableGameWindowPositionWatcher = 1,
     DisableGameWindowPositionWatcher,
+
+    EnableReplayFileBackup,
+    DisableReplayFileBackup,
 };

@@ -13,7 +13,7 @@ public:
 
         Rectangle<int> initialBounds = info_.lookupGameWindowBounds();
 
-        if (!initialBounds.isEmpty()) {
+        if (initialBounds.isEmpty()) {
             isWorking_ = false;
             return;
         }

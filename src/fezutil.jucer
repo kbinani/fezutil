@@ -11,6 +11,14 @@
       <FILE id="FcNhA2" name="Application.cpp" compile="1" resource="0" file="Source/Application.cpp"/>
       <FILE id="MrRUUN" name="Application.hpp" compile="0" resource="0" file="Source/Application.hpp"/>
       <FILE id="vBhjjx" name="CommandIDs.hpp" compile="0" resource="0" file="Source/CommandIDs.hpp"/>
+      <FILE id="S7SCWU" name="Configuration.cpp" compile="1" resource="0"
+            file="Source/Configuration.cpp"/>
+      <FILE id="cWO6Du" name="Configuration.hpp" compile="0" resource="0"
+            file="Source/Configuration.hpp"/>
+      <FILE id="GSPSd0" name="ConfigurationDialogComponent.cpp" compile="1"
+            resource="0" file="Source/ConfigurationDialogComponent.cpp"/>
+      <FILE id="sYZLDm" name="ConfigurationDialogComponent.hpp" compile="0"
+            resource="0" file="Source/ConfigurationDialogComponent.hpp"/>
       <FILE id="UaOHk4" name="GameInformation.cpp" compile="1" resource="0"
             file="Source/GameInformation.cpp"/>
       <FILE id="OEXSRi" name="GameInformation.hpp" compile="0" resource="0"
